@@ -88,7 +88,11 @@ class RestappController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $item = Restdata::find($id);
+        $item->message = $request->message;
+        $item->url = $request->url;
+        $item->save();
+        return redirect("rest/".$id);
     }
 
     /**
@@ -99,6 +103,8 @@ class RestappController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $item = Restdata::find($id);
+        $item->deete();
+        return redirect("rest");
     }
 }
